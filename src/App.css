@@ -1,4 +1,18 @@
-.App{
-  text-align: center;
-  padding-top: 50px;
+section{
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(4, 250px);
+}
+
+section .country{
+  width: 250px;
+  height: fit-content;
+}
+
+section .country img{
+  height: 150px;
+}
+
+section .country p{
+  padding-left: 10px;
 }
