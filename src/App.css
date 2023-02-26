@@ -1,18 +1,24 @@
-section{
+section {
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(4, 250px);
 }
 
-section .country{
+section img {
   width: 250px;
-  height: fit-content;
-}
-
-section .country img{
   height: 150px;
 }
 
-section .country p{
-  padding-left: 10px;
+section h1{
+  font-size: 20px;
+}
+
+a:hover{
+  filter: brightness(1.2);
+}
+
+@media screen and (max-width: 500px) {
+  section {
+    grid-template-columns: 250px;
+  }
 }

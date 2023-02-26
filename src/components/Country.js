@@ -1,60 +1,43 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 const Country = () => {
-  const [country, setCountry] = useState("All");
+  const { id } = useParams();
   const [countries, setCountries] = useState([]);
-  const [allCountries, setAllCountries] = useState([]);
   useEffect(() => {
     axios.get("https://restcountries.com/v2/all").then((res) => {
-      setAllCountries(res.data);
+      setCountries(res.data);
     }, []);
   });
 
-  const handleChange = (e) => {
-    setCountry(e.target.value);
-    if (country == "All") {
-      setCountries(allCountries);
-    } else {
-      setCountries(
-        allCountries.filter((element) => {
-          return element.region == country;
-        })
-      );
-    }
-  };
-
   return (
-    <>
-      <div className="w-1/4 mx-auto my-4">
-        <FormControl fullWidth>
-          <InputLabel>Region</InputLabel>
-          <Select label="Region" value={country} onChange={handleChange}>
-            <MenuItem value="All">All</MenuItem>
-            <MenuItem value="Africa">Africa</MenuItem>
-            <MenuItem value="Americas">Americas</MenuItem>
-            <MenuItem value="Asia">Asia</MenuItem>
-            <MenuItem value="Europe">Europe</MenuItem>
-            <MenuItem value="Oceania">Oceania</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <section className="py-8 justify-center">
-        {countries.map((val, index) => (
-          <div
-            className="country rounded shadow-lg overflow-hidden"
-            key={index}
-          >
-            <img src={val.flags.png} className="d-block w-full" />
-            <p className="flex items-center text-2xl truncate">{val.name}</p>
-            <p className="flex items-center">{val.capital || "Not Found"}</p>
-            <p className="flex items-center">{val.region}</p>
-            <p className="flex items-center">{val.population}</p>
-          </div>
-        ))}
-      </section>
-    </>
+    <Card sx={{ maxWidth: 345 }} className="mx-auto mt-12">
+      <CardMedia
+        component="img"
+        alt={countries[id].name}
+        height="140"
+        image={countries[id].flags.png}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h4" component="div">
+          {countries[id].name}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          {countries[id].capital}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          {countries[id].region}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          {countries[id].population}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="div">
+          {countries[id].area} Km
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 
