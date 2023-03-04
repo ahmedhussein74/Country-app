@@ -14,7 +14,7 @@ const Countries = () => {
     <section className="py-8 justify-center">
       {countries.map((val, index) => (
         <div key={index} className="shadow-lg rounded overflow-hidden">
-          <img src={val.flags.png} alt={val.name} />
+          <img className="w-full" src={val.flags.png} alt={val.name} />
           <article className="p-2">
             <h1 className="font-bold">{val.name}</h1>
             <span className="text-gray-500">{val.capital || "Not Found"}</span>

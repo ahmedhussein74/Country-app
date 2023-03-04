@@ -5,7 +5,6 @@ section {
 }
 
 section img {
-  width: 250px;
   height: 150px;
 }
 
@@ -21,9 +20,25 @@ a:hover {
   width: 300px;
 }
 
-.skeleton {
-  width: 300px;
-  height: 450px;
+.country img {
+  height: 190px;
+}
+
+@media screen and (max-width: 1200px) {
+  section {
+    gap: 20px;
+    grid-template-columns: repeat(3, 225px);
+  }
+  section img {
+    height: 140px;
+  }
+  .country {
+    width: 250px;
+  }
+
+  .country img {
+    height: 150px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -31,10 +46,6 @@ a:hover {
     grid-template-columns: 250px;
   }
   .country {
-    width: 200px;
-  }
-  .skeleton {
-    width: 200px;
-    height: 350px;
+    width: 250px;
   }
 }

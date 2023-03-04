@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav className="bg-slate-800 flex justify-between items-center p-3">
+    <nav className="bg-slate-800 flex justify-between items-center p-3" id="top">
       <Typography
         variant="h6"
         component="div"

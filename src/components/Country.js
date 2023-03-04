@@ -1,7 +1,7 @@
 import axios from "axios";
+import { Skeleton } from "@mui/material";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Skeleton } from "@mui/material";
 
 const Country = () => {
   const { id } = useParams();
@@ -15,36 +15,27 @@ const Country = () => {
   });
 
   return load ? (
-    <Card className="country mx-auto mt-12">
-      <CardMedia
-        component="img"
+    <div className="country mx-auto mt-12 shadow-lg rounded overflow-hidden">
+      <img
         alt={countries[id].name}
-        height="140"
-        image={countries[id].flags.png}
+        src={countries[id].flags.png}
+        className="w-full"
       />
-      <CardContent>
-        <Typography gutterBottom variant="h4" component="div">
-          {countries[id].name}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          {countries[id].capital}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          {countries[id].region}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          {countries[id].population}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="div">
-          {countries[id].area} Km
-        </Typography>
-      </CardContent>
-    </Card>
+      <div className="p-2">
+        <h1 className="font-black text-xl">{countries[id].name}</h1>
+        <p className="py-1">Capital : {countries[id].capital}</p>
+        <p className="py-1">Region : {countries[id].region}</p>
+        <p className="py-1">Population : {countries[id].population}</p>
+        <p className="py-1">Area : {countries[id].area} Km</p>
+      </div>
+    </div>
   ) : (
     <Skeleton
       variant="rounded"
       animation="wave"
-      className="skeleton mx-auto mt-12"
+      width={300}
+      height={350}
+      className="mx-auto mt-12"
     />
   );
 };
