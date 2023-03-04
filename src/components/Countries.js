@@ -20,6 +20,7 @@ const Countries = () => {
             <span className="text-gray-500">{val.capital || "Not Found"}</span>
             <Link
               to={"/" + index}
+              replace="true"
               className="block w-fit text-white px-2 py-1 mt-2 bg-blue-700 rounded"
             >
               Show more

@@ -1,19 +1,21 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Skeleton } from "@mui/material";
 
 const Country = () => {
   const { id } = useParams();
   const [countries, setCountries] = useState([]);
+  const [load, setLoad] = useState(false);
   useEffect(() => {
     axios.get("https://restcountries.com/v2/all").then((res) => {
       setCountries(res.data);
+      setLoad(true);
     }, []);
   });
 
-  return (
-    <Card sx={{ maxWidth: 345 }} className="mx-auto mt-12">
+  return load ? (
+    <Card className="country mx-auto mt-12">
       <CardMedia
         component="img"
         alt={countries[id].name}
@@ -38,6 +40,12 @@ const Country = () => {
         </Typography>
       </CardContent>
     </Card>
+  ) : (
+    <Skeleton
+      variant="rounded"
+      animation="wave"
+      className="skeleton mx-auto mt-12"
+    />
   );
 };
 
